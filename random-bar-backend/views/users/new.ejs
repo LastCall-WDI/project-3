@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>New user</title>
+  </head>
+  <body>
+    <header>
+      <h1>Random Bar App</h1>
+    <nav>
+      <ul>
+        <li>
+          <a href="/users/login">Login</a>
+        </li>
+        <li>
+          <a href="/users/new">Sign Up</a>
+        </li>
+      </ul>
+    </nav>
+    </header>
+    <main>
+      <h1>New User</h1>
+      <form action="/users" method="POST">
+        <input type="text" name="user[firstname]" placeholder="first name"><br>
+        <input type="text" name="user[lastname]" placeholder="last name"><br>
+        <input type="text" name="user[username]" placeholder="username"><br>
+        <input type="email" name="user[email]" placeholder="email"><br>
+        <input type="password" name="user[password]" placeholder="password"><br>
+        <input type="submit" value="Create User">
+      </form>
+    </main>
+
+  </body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "name": "random-bar-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "author": "Jeremy Ross, Thomas Standing, Sky Xu, Andres Maza",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.1",
+    "dotenv": "^4.0.0",
+    "ejs": "^2.5.6",
+    "express": "^4.15.2",
+    "express-jwt": "^5.1.0",
+    "express-session": "^1.15.1",
+    "jsonwebtoken": "^7.3.0",
+    "jwt-express": "^1.1.0",
+    "method-override": "^2.3.7",
+    "morgan": "^1.8.1",
+    "node-fetch": "^1.6.3",
+    "pg-promise": "^5.6.4",
+    "yelp-fusion": "^1.0.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "supertest": "^3.0.0"
+  }
+}
