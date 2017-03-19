@@ -53,7 +53,7 @@ class SignUp extends Component {
       }
     })
     .then(() => {
-      browserHistory.push("/");
+      this.props.router.push('/login');
     })
     .catch((err) => {
       console.log("ERROR:", err);

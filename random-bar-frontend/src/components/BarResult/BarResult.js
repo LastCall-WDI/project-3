@@ -43,12 +43,6 @@ class BarResult extends Component {
           this.setState({bars: data[Math.floor(Math.random() * data.length)]});
           this.setState({loader: { display: 'none'}});
           this.setState({isVisible: {opacity: '1'}});
-
-          // if(window.localStorage.getItem('loggedIn')){
-          //   this.setState({displayFavBtn: {display: 'inline-block'}});
-          // } else {
-          //   this.setState({displayFavBtn: {display: 'none'}});
-          // }
         });
       })
       .catch((err) => {
