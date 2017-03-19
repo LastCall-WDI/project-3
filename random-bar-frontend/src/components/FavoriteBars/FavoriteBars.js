@@ -23,7 +23,6 @@ class FavoriteBars extends Component {
     fetch('http://localhost:8000/users/dashboard', {
       method: "GET",
       headers: {
-        // "Authorization": `Bearer ${window.localStorage.getItem("token")}`
         "Authorization": window.localStorage.getItem("MyToken")
       }
     })
@@ -34,6 +33,7 @@ class FavoriteBars extends Component {
         this.setState({ user_id: data.user_id});
 
         window.localStorage.setItem('user_id', parseInt(this.state.user_id));
+        window.localStorage.setItem('loggedIn', true);
       })
     })
     .catch((err) => {

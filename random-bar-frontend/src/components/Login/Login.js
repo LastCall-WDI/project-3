@@ -54,7 +54,7 @@ class Login extends Component {
       })
     })
     .catch(() => {
-      alert("Not Authenticated!");
+      console.log('This is hitting the catch...');
     })
   }
 

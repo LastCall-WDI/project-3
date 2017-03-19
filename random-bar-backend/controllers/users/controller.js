@@ -21,7 +21,7 @@ controller.authorizeToken = (req, res) => {
 
   jwt.verify(req.headers.authorization, "taco cat", (err, decoded) => {
     if (err) {
-      console.log('one');
+      console.log(err);
       res
       .status(401)
       .json({ error: err.message });

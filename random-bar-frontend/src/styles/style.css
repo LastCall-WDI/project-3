@@ -372,7 +372,7 @@ a, button {
   }
 
   .form-container input {
-    height: 40px;
+    height: 35px;
   }
 
   .bar-card .outline-btn {
@@ -389,20 +389,31 @@ a, button {
 
   h2 {
     font-size: 22px;
+    line-height: 32px;
   }
 
   .navbar .logo {
-    width: 145px;
+    width: 130px;
     margin-left: 20px;
+    margin-top: 53px;
   }
 
   .navbar ul {
-    margin-right: 20px;
+    margin-right: 4px;
+  }
+
+  .navbar ul li {
+    font-size: 14px;
+    margin-left: 13px;
+  }
+
+  .container {
+    max-width: 98%;
   }
 
   .homepage-container {
     max-width: 280px;
-    margin: 15% auto 0 auto;
+    margin: 40% auto 0 auto;
   }
 
   .bar-results {
@@ -414,7 +425,7 @@ a, button {
   .bar-results .bar-card {
     list-style: none;
     text-align: center;
-    padding: 38px 30px;
+    padding: 25px 30px;
   }
 
   .bar-card h2 {
@@ -425,10 +436,20 @@ a, button {
     text-align: left;
   }
 
+  .saved-bar-container h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+    margin-top: 28px;
+  }
+
   .saved-bar-info {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .saved-bar-info ul {
+    margin-bottom: 20px;
   }
 
   .loading-anim {
@@ -442,5 +463,17 @@ a, button {
 
   .bg-img {
     background-image: url('../assets/mbl-bg-img.jpg');
+  }
+
+  .form-container {
+    max-width: 280px;
+  }
+
+  .form-container input {
+    min-width: 280px;
+  }
+
+  .form-container h4 {
+    font-size: 10px;
   }
 }

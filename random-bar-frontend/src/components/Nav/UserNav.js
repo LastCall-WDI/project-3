@@ -7,8 +7,9 @@ class UserNav extends Component {
   }
 
   handleSubmit() {
-    window.localStorage.setItem("MyToken", "");
-    window.localStorage.setItem("user_id", "");
+    window.localStorage.removeItem("MyToken");
+    window.localStorage.removeItem("user_id");
+    window.localStorage.removeItem("loggedIn");
   }
 
   render() {
@@ -19,10 +20,10 @@ class UserNav extends Component {
         </Link>
         <ul>
           <li>
-            {/* Hey, {this.props.firstname} */}
+            <Link to="/bar-result">Find a Bar</Link>
           </li>
           <li>
-          <Link to="/" onClick={this.handleSubmit.bind(this)}>Log Out</Link>
+            <Link to="/" onClick={this.handleSubmit.bind(this)}>Log Out</Link>
           </li>
         </ul>
       </div>

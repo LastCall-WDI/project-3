@@ -6,6 +6,10 @@ import Nav from "../Nav/Nav";
 class Homepage extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      loggedIn: false
+    }
   }
 
   render() {

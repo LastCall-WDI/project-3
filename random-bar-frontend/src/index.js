@@ -16,7 +16,7 @@ ReactDom.render(
   <Router history={browserHistory}>
     <Route path="/" component={Homepage} />
     <Route path="/bar-result" component={BarResult} />
-    <Route path="/:user_id/dashboard" component={FavoriteBars} />
+    <Route path="/users/dashboard" component={FavoriteBars} />
     <Route path="/signup" component={SignUp} />
     <Route path="/login" component={Login} />
   </Router>

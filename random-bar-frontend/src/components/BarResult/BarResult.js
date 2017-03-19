@@ -35,7 +35,6 @@ class BarResult extends Component {
   componentDidMount() {
     navigator.geolocation.getCurrentPosition((position) => {
       this.setState({ position });
-
       fetch(`http://localhost:8000/api/${this.state.position.coords.latitude}/${this.state.position.coords.longitude}`, {
         method: 'GET'
       })
@@ -44,6 +43,12 @@ class BarResult extends Component {
           this.setState({bars: data[Math.floor(Math.random() * data.length)]});
           this.setState({loader: { display: 'none'}});
           this.setState({isVisible: {opacity: '1'}});
+
+          // if(window.localStorage.getItem('loggedIn')){
+          //   this.setState({displayFavBtn: {display: 'inline-block'}});
+          // } else {
+          //   this.setState({displayFavBtn: {display: 'none'}});
+          // }
         });
       })
       .catch((err) => {
@@ -74,30 +79,33 @@ class BarResult extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    fetch('http://localhost:8000/saved_bars', {
-      method: 'POST',
-      body: JSON.stringify({
-        bar: {
-          name: `${this.state.bars.name}`,
-          rating: parseInt(`${this.state.bars.rating}`),
-          phone: `${this.state.bars.display_phone}`,
-          price: `${this.state.bars.price}`,
-          address: `${this.state.bars.location.display_address}`,
-          user_id: window.localStorage.getItem('user_id')
+    if(window.localStorage.getItem('loggedIn')) {
+      fetch('http://localhost:8000/saved_bars', {
+        method: 'POST',
+        body: JSON.stringify({
+          bar: {
+            name: `${this.state.bars.name}`,
+            rating: parseInt(`${this.state.bars.rating}`),
+            phone: `${this.state.bars.display_phone}`,
+            price: `${this.state.bars.price}`,
+            address: `${this.state.bars.location.display_address}`,
+            user_id: window.localStorage.getItem('user_id')
+          }
+        }),
+        headers: {
+          'Content-Type': 'application/json'
         }
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    .then((data) => {
-      browserHistory.push('/users/dashboard');
-      console.log(data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-
+      })
+      .then((data) => {
+        browserHistory.push('/users/dashboard');
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    } else {
+      this.props.router.push('/login');
+    }
   }
 
   render(){
