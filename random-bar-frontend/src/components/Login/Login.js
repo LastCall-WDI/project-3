@@ -1,8 +1,8 @@
-import React, {Component} from "react";
-import {browserHistory} from "react-router";
-import update from "react-addons-update";
+import React, {Component} from 'react';
+import {browserHistory} from 'react-router';
+import update from 'react-addons-update';
 
-import Nav from "../Nav/Nav";
+import Nav from '../Nav/Nav';
 
 class Login extends Component {
   constructor(props) {
@@ -29,33 +29,23 @@ class Login extends Component {
   }
 
   handleSubmit(event) {
-    console.log('hello')
     event.preventDefault();
-    console.log('state in login component', JSON.stringify(this.state))
-    fetch(`http://localhost:8000/users/login`, {
-      method: "POST",
+    fetch(`https://andres-wdi-project3.herokuapp.com/users/login`, {
+      method: 'POST',
       headers: {
         'content-type': 'application/json'
       },
       body: JSON.stringify(this.state)
     })
     .then((results) => {
-      console.log('results in login component:',results);
       results.json().then((jwt) => {
-        console.log('jwt in login component', jwt.token)
-        // console.log(jwt);
-        window.localStorage.setItem("MyToken", jwt.token);
-        console.log('localstorage token',window.localStorage.getItem("MyToken"))
-        // HOW WE CAN LOGOUT - wipe token
-        // window.localStorage.setItem("MyToken", "")
-        // console.log('localstorage after wipe',window.localStorage.getItem("MyToken"))
-
-        browserHistory.push("/users/dashboard");
-      })
+        window.localStorage.setItem('MyToken', jwt.token);
+        browserHistory.push('/users/dashboard');
+      });
     })
     .catch(() => {
       console.log('This is hitting the catch...');
-    })
+    });
   }
 
   render() {
@@ -75,7 +65,7 @@ class Login extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 

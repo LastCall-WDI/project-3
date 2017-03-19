@@ -1,14 +1,15 @@
-import React, { Component } from "react";
-import { browserHistory } from "react-router";
+import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 
-import UserNav from "../Nav/UserNav";
-import SavedBar from "./SavedBar";
+import UserNav from '../Nav/UserNav';
+import SavedBar from './SavedBar';
 
 class FavoriteBars extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+    // Pass in dummy content to avoid errors if user data comes back as empty
       bars: [
         {
           firstname: 'John'
@@ -18,28 +19,29 @@ class FavoriteBars extends Component {
     };
   }
 
-  // get dynamic content from server user saved JWT
+  // Get dynamic content from server user saved JWT
   componentDidMount() {
-    fetch('http://localhost:8000/users/dashboard', {
-      method: "GET",
+    fetch('https://andres-wdi-project3.herokuapp.com/users/dashboard', {
+      method: 'GET',
       headers: {
-        "Authorization": window.localStorage.getItem("MyToken")
+        'Authorization': window.localStorage.getItem('MyToken')
       }
     })
     .then((results) => {
       results.json().then((data) => {
-        // console.log('DATA FROM REACT:', data.user_id);
+        // Get user data and user id
         this.setState({ bars: data.data });
         this.setState({ user_id: data.user_id});
-
+        // Create new items in localStorage to store user_id and user status
         window.localStorage.setItem('user_id', parseInt(this.state.user_id));
         window.localStorage.setItem('loggedIn', true);
-      })
+      });
     })
     .catch((err) => {
-      console.log(err)
-      browserHistory.push("/users/login");
-    })
+      console.log('ERROR: ', err);
+      // Re-direct to login page if 401. (Noting that this code below does not work as expected)
+      browserHistory.push('/users/login');
+    });
   }
 
   render() {
@@ -60,7 +62,7 @@ class FavoriteBars extends Component {
                   phone_number={bar.phone}
                 />
               </div>
-            )
+            );
           })}
         </div>
       </div>

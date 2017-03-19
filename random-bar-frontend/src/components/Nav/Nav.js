@@ -12,7 +12,7 @@ class Nav extends Component {
       loggedOut: {
         display: 'inline-block'
       }
-    }
+    };
   }
 
   componentDidMount() {
@@ -20,7 +20,7 @@ class Nav extends Component {
       this.setState({loggedOut: {display: 'none'}});
       this.setState({loggedIn: {display: 'inline-block'}});
     } else {
-      this.setState({loggedIn: {display: 'none'}})
+      this.setState({loggedIn: {display: 'none'}});
       this.setState({loggedOut: {display: 'inline-block'}});
     }
   }
@@ -43,7 +43,7 @@ class Nav extends Component {
           </li>
         </ul>
       </div>
-    )
+    );
   }
 }
 

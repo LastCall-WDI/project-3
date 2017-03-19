@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { browserHistory } from "react-router";
 import update from "react-addons-update";
 
 import Nav from "../Nav/Nav";
@@ -14,7 +13,7 @@ class SignUp extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:8000/users`, {
+    fetch(`https://andres-wdi-project3.herokuapp.com/users`, {
       method: "GET"
     })
     .then((results) => {
@@ -45,7 +44,7 @@ class SignUp extends Component {
 
     console.log(this.state.user);
 
-    fetch(`http://localhost:8000/users/signup`, {
+    fetch(`https://andres-wdi-project3.herokuapp.com/users/signup`, {
       method: "POST",
       body: JSON.stringify(this.state),
       headers: {

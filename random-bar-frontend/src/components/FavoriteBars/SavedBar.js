@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Link, browserHistory } from "react-router";
+import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 class SavedBar extends Component {
   constructor() {
@@ -9,19 +9,20 @@ class SavedBar extends Component {
       isVisible: {
         display: 'block'
       }
-    }
+    };
   }
 
   handleDelete() {
-    fetch(`http://localhost:8000/saved_bars/${this.props.bar_id}/${this.props.user_id}`, {
+    fetch(`https://andres-wdi-project3.herokuapp.com/saved_bars/${this.props.bar_id}/${this.props.user_id}`, {
       method: 'DELETE'
     })
-    .then((data) => {
+    .then(() => {
+      // Set display of component to none if item is removed from database
       this.setState({isVisible: {display: 'none'}});
     })
     .catch((err) => {
       console.log('ERROR: ', err);
-    })
+    });
   }
 
   render() {
@@ -41,7 +42,7 @@ class SavedBar extends Component {
           </Link>
         </div>
       </div>
-    )
+    );
   }
 }
 

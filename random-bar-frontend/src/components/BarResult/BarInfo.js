@@ -1,17 +1,16 @@
-import React from "react";
+import React from 'react';
 
 function BarInfo(props) {
+  // Functionality to toggle colors between Open & Closed states
   let restaurantStatus;
   let statusStyle = {
     color: '#FF3B44',
-  }
-
-  if(props.status === false){
+  };
+  if(props.status === false) {
     restaurantStatus = 'Open Right Now';
     statusStyle.color = '#41FFC0';
-
   } else {
-    restaurantStatus = 'This Place is Closed'
+    restaurantStatus = 'This Place is Closed';
   }
 
   return(

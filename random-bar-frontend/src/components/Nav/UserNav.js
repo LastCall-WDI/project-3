@@ -27,7 +27,7 @@ class UserNav extends Component {
           </li>
         </ul>
       </div>
-    )
+    );
   }
 }
 

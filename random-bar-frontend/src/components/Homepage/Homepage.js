@@ -9,7 +9,7 @@ class Homepage extends Component {
 
     this.state = {
       loggedIn: false
-    }
+    };
   }
 
   render() {
@@ -32,7 +32,7 @@ class Homepage extends Component {
           <div className="overlay"></div>
         </div>
       </div>
-    )
+    );
   }
 }
 

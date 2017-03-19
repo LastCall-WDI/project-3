@@ -1,9 +1,7 @@
-import React, { Component } from "react";
-import { Link, browserHistory } from "react-router";
+import React, { Component } from 'react';
 
-
-import Nav from "../Nav/Nav";
-import BarInfo from "./BarInfo";
+import Nav from '../Nav/Nav';
+import BarInfo from './BarInfo';
 
 class BarResult extends Component {
   constructor(props) {
@@ -29,19 +27,23 @@ class BarResult extends Component {
       isVisible: {
         opacity: '0',
       }
-    }
+    };
   }
 
   componentDidMount() {
+    // Get user coordinates & store them in state
     navigator.geolocation.getCurrentPosition((position) => {
       this.setState({ position });
-      fetch(`http://localhost:8000/api/${this.state.position.coords.latitude}/${this.state.position.coords.longitude}`, {
+      fetch(`https://andres-wdi-project3.herokuapp.com/api/${this.state.position.coords.latitude}/${this.state.position.coords.longitude}`, {
         method: 'GET'
       })
       .then((results) => {
         results.json().then((data) => {
+          // Set the state of bars to be a random index number of the returned array
           this.setState({bars: data[Math.floor(Math.random() * data.length)]});
+          // Turn off loader animation
           this.setState({loader: { display: 'none'}});
+          // Set opacity of 'BarResult' component back to 1
           this.setState({isVisible: {opacity: '1'}});
         });
       })
@@ -55,7 +57,7 @@ class BarResult extends Component {
     this.setState({isVisible: {opacity: '0'}});
     this.setState({loader: {display: 'block'}});
 
-    fetch(`http://localhost:8000/api/${this.state.position.coords.latitude}/${this.state.position.coords.longitude}`, {
+    fetch(`https://andres-wdi-project3.herokuapp.com/api/${this.state.position.coords.latitude}/${this.state.position.coords.longitude}`, {
       method: 'GET'
     })
     .then((results) => {
@@ -67,14 +69,15 @@ class BarResult extends Component {
     })
     .catch((err) => {
       console.log('ERROR: ', err);
-    })
+    });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-
+    // If user is logged in "Add to Favorites" re-directs to dashboard
+    // Else re-direct to login page
     if(window.localStorage.getItem('loggedIn')) {
-      fetch('http://localhost:8000/saved_bars', {
+      fetch('https://andres-wdi-project3.herokuapp.com/saved_bars', {
         method: 'POST',
         body: JSON.stringify({
           bar: {
@@ -90,13 +93,12 @@ class BarResult extends Component {
           'Content-Type': 'application/json'
         }
       })
-      .then((data) => {
-        browserHistory.push('/users/dashboard');
-        console.log(data);
+      .then(() => {
+        this.props.router.push('/users/dashboard');
       })
       .catch((err) => {
-        console.log(err);
-      })
+        console.log('ERROR:', err);
+      });
     } else {
       this.props.router.push('/login');
     }
@@ -129,7 +131,7 @@ class BarResult extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
