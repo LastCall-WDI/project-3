@@ -1,9 +1,9 @@
 const pgp = require('pg-promise')();
 
-const db = pgp({
-  database: 'random_bar_app',
+const db = pgp(process.env.DATABASE_URL || {
+  host: 'localhost',
   port: 5432,
-  host: 'localhost'
+  database: 'random_bar_app'
 })
 
 module.exports = db;

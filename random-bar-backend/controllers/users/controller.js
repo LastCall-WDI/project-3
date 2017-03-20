@@ -6,19 +6,7 @@ const Bar = require('../../models/bar');
 
 const controller = {};
 
-controller.index = (req, res) => {
-  User
-    .findAll()
-    .then((data) => res.json({ user: data }))
-    .catch((err) => console.log('ERROR', err));
-};
-
-controller.new = (req, res) => {
-  res.render('users/new');
-};
-
 controller.authorizeToken = (req, res) => {
-
   jwt.verify(req.headers.authorization, "taco cat", (err, decoded) => {
     if (err) {
       console.log(err);
@@ -26,7 +14,6 @@ controller.authorizeToken = (req, res) => {
       .status(401)
       .json({ error: err.message });
     } else {
-      // pass favorite bars to dashboard page here
       Bar
         .findByUserEmail(decoded.email)
         .then((data) => {
@@ -38,21 +25,10 @@ controller.authorizeToken = (req, res) => {
         .catch((err) => {
           console.log('ERROR', err);
         })
-      console.log('two', decoded);
-      // res.json({ message: "This is restricted content coming from the Node Server."})
+      console.log('JSON Decoded', decoded);
     }
   });
 }
-
-controller.show = (req, res) => {
-  User
-    .findById(req.params.id)
-    .then((data) => {
-      res.render('users/show', { users: data });
-      console.log(data);
-    })
-    .catch((err) => console.log('ERROR', err));
-};
 
 controller.create = (req, res) => {
   console.log('req body in controller', req.body)
@@ -61,7 +37,7 @@ controller.create = (req, res) => {
     .then((data) => {
       console.log('data in controller', data)
       res.status(201)
-      .json({ user: data })
+      res.json({ user: data })
     })
     .catch(err => console.log('ERROR', err));
 };
@@ -70,20 +46,20 @@ controller.login = (req, res) => {
   User
     .findByEmail(req.body.user.email)
     .then((user) => {
-      // if user exists
+      // If user exists
       if (user) {
-        // compare password with hashed password - will return boolean
+        // Compare password with hashed password - will return boolean
         const isAuthed = bcrypt.compareSync(req.body.user.password, user.password_digest);
         if (isAuthed) {
-          // create JWT with email from user record with options
+          // Create JWT with email from user record with options
           const token = jwt.sign({
             email : user.email,
             user_id: user.id
           }, 'taco cat', { expiresIn: '7d' });
-          // respond with token
+          // Respond with JWT token
           res.json({ token });
         } else {
-          // else send user back to login view
+          // Else send status 401
           res.sendStatus(401);
         }
       } else {
@@ -93,7 +69,6 @@ controller.login = (req, res) => {
     });
 }
 
-// credit to Dan Pease who helped us to pass the jwt properly when a user is created and logs in
-
-
 module.exports = controller;
+
+// Credit to Dan Pease who helped us to pass the jwt properly when a user is created and logs in

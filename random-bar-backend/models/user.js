@@ -1,6 +1,3 @@
-// user model
-
-// config bcrypt for password encryption
 const bcrypt = require('bcrypt');
 const db = require('../config/db');
 
@@ -23,28 +20,13 @@ User.create = (user) => {
     ]);
 }
 
-User.findAll = () => {
-  return db.query(`
-    SELECT * FROM users`);
-}
-
-User.findById = (id) => {
-  return db.oneOrNone(`
-    SELECT * FROM users
-    WHERE id = $1;`,
-    [id]
-  );
-}
-
 User.findByEmail = (email) => {
-  // console.log('email in model', email)
   return db.oneOrNone(`
     SELECT * FROM users
     WHERE email = $1;`,
     [email]
   );
 };
-
 
 User.delete = (user) => {
   return db.none(`
@@ -53,8 +35,5 @@ User.delete = (user) => {
     [user]
   );
 };
-
-
-
 
 module.exports = User;

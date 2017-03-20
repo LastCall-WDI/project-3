@@ -34,7 +34,7 @@ class Login extends Component {
     fetch(`https://andres-wdi-project3.herokuapp.com/users/login`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(this.state)
     })
