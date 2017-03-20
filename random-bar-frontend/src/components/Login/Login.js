@@ -30,10 +30,11 @@ class Login extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+
     fetch(`https://andres-wdi-project3.herokuapp.com/users/login`, {
       method: 'POST',
       headers: {
-        'content-type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(this.state)
     })
@@ -44,7 +45,7 @@ class Login extends Component {
       });
     })
     .catch(() => {
-      console.log('This is hitting the catch...');
+      console.log('User login has failed');
     });
   }
 

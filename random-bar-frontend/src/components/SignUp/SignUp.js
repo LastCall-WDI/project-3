@@ -12,21 +12,6 @@ class SignUp extends Component {
     };
   }
 
-  componentDidMount() {
-    fetch(`https://andres-wdi-project3.herokuapp.com/users`, {
-      method: "GET"
-    })
-    .then((results) => {
-      results.json().then((data) => {
-        this.setState({ user: data });
-        console.log("signup.js component did mount data:", data); // logs as empty object
-      });
-    })
-    .catch((err) => {
-      console.log("ERROR:", err);
-    });
-  }
-
   handleChange(event) {
     let newState = update(this.state, {
       user: {
@@ -35,7 +20,6 @@ class SignUp extends Component {
         }
       }
     });
-
     this.setState(newState);
   }
 
@@ -48,7 +32,7 @@ class SignUp extends Component {
       method: "POST",
       body: JSON.stringify(this.state),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       }
     })
     .then(() => {
