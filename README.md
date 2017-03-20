@@ -56,6 +56,10 @@ User Dashboard:
 
 ### Unsolved issues
 
+* Fetch requests do not work on mobile
+
+* Our log in request still goes through successfully through the .then() even on 401 and displays an empty dashboard.
+
 * There were additional features we would like to have added such as leaving comments on each bar and look forward to working further on this in the future.
 
 * Huge thanks and credit to Dan Pease and Irwin Tsay who both helped us to pass the JSON Web Token properly once a user is created and logs in and on restricted routes.
